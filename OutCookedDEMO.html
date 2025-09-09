@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OutCooked Cheat.io — Mock UI</title>
+  <meta name="description" content="A sleek, single‑file HTML mockup for a gaming tools hub. Front‑end only — no cheats included." />
+  <style>
+    :root{
+      --bg:#0b0d12;--panel:#121522;--panel-2:#171a2a;--accent:#7c5cff;--accent-2:#00e6a8;--text:#e6e8ef;--muted:#9aa3b2;--warn:#ffb02e;--bad:#ff5c7a;--good:#37d67a;--ring: rgba(124,92,255,.6);
+      --radius:18px;--shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(124,92,255,.12), transparent),
+                  radial-gradient(1000px 500px at -10% 10%, rgba(0,230,168,.10), transparent),
+                  var(--bg);
+      color:var(--text);
+      letter-spacing:.2px;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:0 auto;padding:28px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:42px;height:42px;border-radius:12px;
+      background: conic-gradient(from 210deg, var(--accent), var(--accent-2));
+      box-shadow:0 6px 20px rgba(124,92,255,.35);
+    }
+    .brand b{font-size:1.1rem;letter-spacing:.4px}
+    .nav .links{display:flex;gap:18px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:var(--panel);border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);cursor:pointer;transition:.2s ease}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 14px 44px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.06)}
+    .btn.accent{background:linear-gradient(135deg, var(--accent), var(--accent-2)); border:none;color:#0a0d14;font-weight:700}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;margin-top:28px}
+    @media (max-width: 960px){.hero{grid-template-columns:1fr}}
+    .card{background: linear-gradient(180deg, var(--panel), var(--panel-2)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow)}
+    .title{font-size:clamp(28px,4.2vw,50px);line-height:1.05;margin:8px 0 12px}
+    .subtitle{color:var(--muted);max-width:60ch}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+    .badge{padding:8px 12px;border-radius:999px;background:#0f1320;border:1px solid rgba(255,255,255,.08);font-size:.85rem;color:var(--muted)}
+    .badge .dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px}
+    .dot.ok{background:var(--good);box-shadow:0 0 12px var(--good)}
+    .dot.down{background:var(--bad);box-shadow:0 0 12px var(--bad)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width: 960px){.grid{grid-template-columns:1fr}}
+    .metric{display:flex;align-items:center;justify-content:space-between}
+    .metric h3{margin:0;font-size:1rem;color:var(--muted)}
+    .metric .n{font-size:1.6rem;font-weight:800}
+    .pilltabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 20px}
+    .pilltabs button{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:#0e1220;color:var(--text);cursor:pointer}
+    .pilltabs button.active{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b0d12; font-weight:800}
+    .code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; background:#0a0e1a;border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:16px; overflow:auto; font-size:.9rem}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media (max-width: 960px){.row{grid-template-columns:1fr}}
+    .footer{margin:40px 0 16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted)}
+    /* table */
+    table{width:100%;border-collapse:separate;border-spacing:0 10px}
+    th{font-size:.9rem;color:var(--muted);font-weight:600;text-align:left;padding:0 12px}
+    td{padding:14px 12px;background:#0f1320;border:1px solid rgba(255,255,255,.06)}
+    tr td:first-child{border-radius:12px 0 0 12px}
+    tr td:last-child{border-radius:0 12px 12px 0}
+    .status{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;font-size:.85rem}
+    .status.up{background:rgba(55,214,122,.12);color:#baf3cf}
+    .status.down{background:rgba(255,92,122,.12);color:#ffd0da}
+    .status.warn{background:rgba(255,176,46,.12);color:#ffe0b3}
+    .kbd{padding:4px 8px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:#0e1220;font-family:inherit}
+    .toast{position:fixed;right:22px;bottom:22px;background:#0f1320;border:1px solid rgba(255,255,255,.06);padding:16px 18px;border-radius:14px;box-shadow:var(--shadow);display:none}
+    .toast.show{display:block}
+    .notice{font-size:.86rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header class="container nav">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <b>OutCooked Cheat.io</b>
+      <span class="badge">UI Demo</span>
+    </div>
+    <nav class="links">
+      <a class="btn" href="#features">Features</a>
+      <a class="btn" href="#status">Status</a>
+      <a class="btn" href="#pricing">Pricing</a>
+      <button class="btn accent" id="openLogin">Download</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card">
+        <p class="badge"><span class="dot ok"></span> Build: v0.9.0 (Front‑end only)</p>
+        <h1 class="title">A sleek hub for your <span style="background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">gaming tools</span>.</h1>
+        <p class="subtitle">This is a visual mockup for a gaming utilities dashboard. It's a <strong>front‑end only</strong> template — no exploits, injections, or cheat functionality are included.</p>
+        <div class="badges">
+          <span class="badge"><span class="dot ok"></span> Overlay</span>
+          <span class="badge"><span class="dot ok"></span> Config Manager</span>
+          <span class="badge"><span class="dot down"></span> Kernel Driver</span>
+          <span class="badge">Spoofer <span class="notice">(placeholder)</span></span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn accent" id="primaryCta">Get the Mockup</button>
+          <a class="btn" href="#docs">View Docs</a>
+          <span class="notice">Press <span class="kbd">/</span> to quick search</span>
+        </div>
+      </div>
+      <div class="card" aria-labelledby="status">
+        <div class="metric">
+          <h3>Total Users</h3>
+          <div class="n" id="users">12,415</div>
+        </div>
+        <div class="metric">
+          <h3>Uptime (mock)</h3>
+          <div class="n" id="uptime">99.9%</div>
+        </div>
+        <div class="metric">
+          <h3>Detection Flags</h3>
+          <div class="n" id="flags">0</div>
+        </div>
+        <div class="pilltabs" role="tablist">
+          <button class="active" data-tab="pc">PC</button>
+          <button data-tab="console" disabled title="Demo only">Console</button>
+          <button data-tab="cloud">Cloud</button>
+        </div>
+        <div class="code" id="snippet" aria-live="polite" aria-atomic="true">
+<pre>
+# example CLI (mock)
+outcooked --profile default --overlay on --fps 144
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="row" style="margin-top:20px">
+      <div class="card">
+        <h2>Features</h2>
+        <ul>
+          <li>Overlay & HUD components (placeholders)</li>
+          <li>Config presets & import/export</li>
+          <li>Keybind manager & quick actions</li>
+          <li>Versioned modules with status flags</li>
+          <li>Log viewer for diagnostics (no sensitive data)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Module Status</h2>
+        <table>
+          <thead><tr><th>Module</th><th>Version</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Overlay</td><td>1.2.0</td>
+              <td><span class="status up">Operational</span></td>
+              <td>Customizable widgets</td>
+            </tr>
+            <tr>
+              <td>Aim Assist</td><td>—</td>
+              <td><span class="status down">Unavailable</span></td>
+              <td>Not included in demo</td>
+            </tr>
+            <tr>
+              <td>Config Manager</td><td>0.8.3</td>
+              <td><span class="status up">Operational</span></td>
+              <td>JSON import/export</td>
+            </tr>
+            <tr>
+              <td>Spoofer</td><td>—</td>
+              <td><span class="status warn">Placeholder</span></td>
+              <td>UI only</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="docs" class="row" style="margin-top:20px">
+      <div class="card">
+        <h2>Getting Started (Front‑end)</h2>
+        <ol>
+          <li>Download this HTML file and open it locally.</li>
+          <li>Edit text, colors, and sections to match your project.</li>
+          <li>Hook up real back‑end APIs if you have a legitimate tool.</li>
+        </ol>
+        <p class="notice">Reminder: This template is for UI/UX demonstration only and does <strong>not</strong> contain or enable cheating functionality.</p>
+      </div>
+      <div class="card">
+        <h2>Quick Actions</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" data-toast="Saved settings (mock)">Save</button>
+          <button class="btn" data-toast="Reset to defaults">Reset</button>
+          <button class="btn" data-toast="Exported config.json">Export</button>
+          <button class="btn" data-toast="Imported config.json">Import</button>
+        </div>
+        <p class="notice" style="margin-top:10px">These buttons just show toasts to demonstrate interactions.</p>
+      </div>
+    </section>
+
+    <section id="pricing" style="margin-top:20px">
+      <div class="card">
+        <h2>Pricing</h2>
+        <div class="grid">
+          <div class="card" style="padding:18px">
+            <h3>Free</h3>
+            <p class="notice">UI Template only</p>
+            <ul>
+              <li>Basic layout</li>
+              <li>Mock status panel</li>
+              <li>MIT license</li>
+            </ul>
+            <button class="btn accent" data-toast="Downloaded index.html">Download</button>
+          </div>
+          <div class="card" style="padding:18px; outline:2px solid var(--ring)">
+            <h3>Pro (Demo)</h3>
+            <p class="notice">Extended components</p>
+            <ul>
+              <li>Extra panels</li>
+              <li>Dark/Light switch</li>
+              <li>Support badge</li>
+            </ul>
+            <button class="btn" data-toast="Pro is a demo tier only">Purchase</button>
+          </div>
+          <div class="card" style="padding:18px">
+            <h3>Team</h3>
+            <p class="notice">For studios</p>
+            <ul>
+              <li>Brand kit</li>
+              <li>Tokens & theming</li>
+              <li>Priority support</li>
+            </ul>
+            <button class="btn" data-toast="Contact sales (mock)">Contact</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer container">
+      <span>© <span id="year"></span> OutCooked Cheat.io • Front‑end mockup</span>
+      <span>By using this demo, you agree not to use software to unfairly disadvantage others.</span>
+    </section>
+  </main>
+
+  <!-- Login / Download Modal (mock) -->
+  <dialog id="loginModal" style="border:none;padding:0;background:transparent">
+    <div class="card" style="width:min(560px, 92vw);position:relative">
+      <button class="btn" id="closeLogin" style="position:absolute;right:10px;top:10px">Close</button>
+      <h3>Sign in to continue</h3>
+      <p class="notice">This is a demo modal — it does not authenticate or deliver software.</p>
+      <form method="dialog" class="row">
+        <div>
+          <label>Email</label>
+          <input class="kbd" style="width:100%;margin-top:6px" placeholder="you@example.com" />
+        </div>
+        <div>
+          <label>Password</label>
+          <input class="kbd" style="width:100%;margin-top:6px" type="password" placeholder="••••••••" />
+        </div>
+      </form>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+        <button class="btn accent" id="fakeLogin">Continue</button>
+        <button class="btn" id="cancelLogin">Cancel</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const qs = (s, el=document) => el.querySelector(s);
+    const qsa = (s, el=document) => [...el.querySelectorAll(s)];
+    const toast = qs('#toast');
+    const showToast = (msg) => { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1800); };
+
+    // Fake numbers that gently tick up
+    const usersEl = qs('#users');
+    let users = 12415;
+    setInterval(()=>{ users += Math.floor(Math.random()*3); usersEl.textContent = users.toLocaleString(); }, 1500);
+
+    // Tab & snippet demo
+    const snippet = qs('#snippet pre');
+    qsa('.pilltabs button').forEach(btn => btn.addEventListener('click', () => {
+      qsa('.pilltabs button').forEach(b=>b.classList.toggle('active', b===btn));
+      const tab = btn.dataset.tab;
+      if(tab === 'pc') snippet.textContent = 'outcooked --profile default --overlay on --fps 144';
+      if(tab === 'cloud') snippet.textContent = 'curl -L https://api.example.com/outcooked/demo | bash';
+    }));
+
+    // Buttons → toast
+    qsa('[data-toast]').forEach(b => b.addEventListener('click', () => showToast(b.dataset.toast)));
+
+    // Keyboard quick search (mock)
+    window.addEventListener('keydown', (e)=>{ if(e.key === '/'){ e.preventDefault(); showToast('Quick search opened (demo)'); }});
+
+    // Modal logic (demo)
+    const loginModal = qs('#loginModal');
+    const openLogin = () => loginModal.showModal();
+    const closeLogin = () => loginModal.close();
+    qs('#openLogin').addEventListener('click', openLogin);
+    qs('#primaryCta').addEventListener('click', openLogin);
+    qs('#closeLogin').addEventListener('click', closeLogin);
+    qs('#cancelLogin').addEventListener('click', closeLogin);
+    qs('#fakeLogin').addEventListener('click', ()=>{ showToast('Signed in (mock)'); closeLogin(); });
+
+    // Year
+    qs('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
