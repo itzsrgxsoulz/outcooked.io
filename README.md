@@ -1,0 +1,2 @@
+# outcooked.io
+Cheats!!!
